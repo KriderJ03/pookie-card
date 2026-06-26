@@ -479,6 +479,26 @@ input:focus {
   transform: translateX(0);
 }
 
+.metal-door-lock-art {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  height: 100vh;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: center center;
+  opacity: 0;
+  transform: translateX(-50%) scaleX(1.02);
+  transition: opacity 220ms ease 520ms;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.1));
+}
+
+.door-system.is-closed .metal-door-lock-art {
+  opacity: 1;
+}
+
 .door-lock {
   position: absolute;
   top: clamp(88px, 14vh, 150px);
