@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A tiny romantic security-gauntlet card for a computer science girlfriend."
+    />
+    <title>Pookie Card</title>
+    <link rel="preload" href="assets/card-front.png" as="image" />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <main class="app-shell" aria-live="polite">
+      <section class="stage stage-cover is-active" data-stage="cover">
+        <div class="cover-wrap">
+          <p class="eyebrow">secure pookie protocol</p>
+          <button class="card-trigger" id="cardTrigger" aria-label="Open the card">
+            <img
+              class="card-art"
+              src="assets/card-front.png"
+              alt="A closed romantic greeting card with code-inspired details"
+            />
+            <span class="card-shine" aria-hidden="true"></span>
+          </button>
+          <p class="cover-note">authorization required</p>
+        </div>
+      </section>
+
+      <section class="stage stage-auth" data-stage="auth">
+        <div class="vault">
+          <img
+            class="vault-card"
+            src="assets/card-front.png"
+            alt="The card waiting behind the security doors"
+          />
+
+          <form class="login-panel" id="loginForm" autocomplete="off">
+            <p class="panel-kicker">classified card access</p>
+            <h1>Enter password</h1>
+            <label class="field">
+              <span>Password</span>
+              <input
+                id="passwordInput"
+                name="password"
+                type="password"
+                inputmode="text"
+                autocomplete="off"
+                placeholder="nice try"
+              />
+            </label>
+            <button class="primary-btn" type="submit">Unlock</button>
+            <p class="status-line" id="loginStatus"></p>
+          </form>
+
+          <div class="door-system" id="doorSystem" aria-hidden="true">
+            <div class="door door-left">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="door door-right">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="door-lock">ACCESS DENIED</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stage stage-quiz" data-stage="quiz">
+        <div class="checkpoint">
+          <div class="checkpoint-header">
+            <p class="panel-kicker">backup verification</p>
+            <span id="questionCount">1 / 3</span>
+          </div>
+          <h2 id="questionText"></h2>
+          <form id="questionForm" class="answer-row" autocomplete="off">
+            <input id="answerInput" name="answer" type="text" />
+            <button class="primary-btn" type="submit">Submit</button>
+          </form>
+          <p class="status-line" id="questionStatus"></p>
+        </div>
+      </section>
+
+      <section class="stage stage-captcha" data-stage="captcha">
+        <div class="captcha-panel">
+          <div class="checkpoint-header">
+            <p class="panel-kicker">human-ish check</p>
+            <span id="captchaCount">0 selected</span>
+          </div>
+          <h2>Select every photo with a pink heart.</h2>
+          <div class="captcha-grid" id="captchaGrid"></div>
+          <button class="primary-btn wide-btn" id="captchaSubmit" type="button">
+            Verify
+          </button>
+          <p class="status-line" id="captchaStatus"></p>
+        </div>
+      </section>
+
+      <section class="stage stage-two-factor" data-stage="two-factor">
+        <div class="checkpoint two-factor-panel">
+          <p class="panel-kicker">two factor authentication</p>
+          <h2>Check the inbox.</h2>
+          <p class="soft-copy" id="twoFactorMessage"></p>
+          <form id="twoFactorForm" class="answer-row code-row" autocomplete="off">
+            <input
+              id="codeInput"
+              name="code"
+              type="text"
+              inputmode="numeric"
+              maxlength="6"
+              aria-label="Six digit code"
+            />
+            <button class="primary-btn" type="submit">Open</button>
+          </form>
+          <button class="secondary-btn" id="resendCode" type="button">Resend</button>
+          <p class="status-line" id="twoFactorStatus"></p>
+        </div>
+      </section>
+
+      <section class="stage stage-final" data-stage="final">
+        <button class="sound-toggle" id="soundToggle" type="button">Mute music</button>
+        <article class="open-card" aria-label="Opened card">
+          <div class="card-page card-page-left">
+            <p class="tiny-label">approved</p>
+            <h2>Dear Pookie,</h2>
+            <p>
+              You made it through the most dramatic security system ever built
+              for one very important message.
+            </p>
+          </div>
+          <div class="card-page card-page-right">
+            <h1>For my favorite CS girl</h1>
+            <p>
+              You are my favorite notification, my cleanest merge, and the
+              softest place in my whole runtime.
+            </p>
+            <p>
+              I hope this little site makes you smile as much as you make me
+              smile.
+            </p>
+            <p class="signature" id="signatureLine">- your biggest fan</p>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
