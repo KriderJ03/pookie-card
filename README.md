@@ -9,6 +9,24 @@ A static GitHub Pages card with a playful security-gauntlet flow:
 5. Enter a 2FA code.
 6. Open the card and start the background music.
 
+## Live Links
+
+- Repo: https://github.com/KriderJ03/pookie-card
+- Site: https://kriderj03.github.io/pookie-card/
+
+## Work From Another Computer
+
+Install Codex on the other computer, sign into the same account, and open a
+local clone of this repo:
+
+```powershell
+git clone https://github.com/KriderJ03/pookie-card.git
+cd pookie-card
+```
+
+Start a Codex chat in that folder. Any changes can be committed and pushed back
+to GitHub, then pulled on the original computer.
+
 ## Customize
 
 Edit `CONFIG` at the top of `script.js`.
@@ -59,20 +77,20 @@ Then open http://localhost:4173/.
 
 ## Publish With GitHub Pages
 
-After this folder is pushed to GitHub:
+This repo is deployed with GitHub Pages. If Pages ever needs to be reconnected:
 
 1. Open the repo on GitHub.
 2. Go to Settings > Pages.
 3. Set the source to GitHub Actions.
 4. Push to `main`; the included workflow deploys the site.
 
-The local remote is already set to:
+The local remote is:
 
 ```powershell
 https://github.com/KriderJ03/pookie-card.git
 ```
 
-After creating that empty repo on GitHub, push with:
+Push local changes with:
 
 ```powershell
 git push -u origin main
