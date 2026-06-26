@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="A tiny romantic security-gauntlet card for a computer science girlfriend."
+      content="A hand-drawn romantic security-gauntlet card for a computer science girlfriend."
     />
     <title>Pookie Card</title>
-    <link rel="preload" href="assets/card-front.png" as="image" />
+    <link rel="preload" href="assets/handdrawn/envelope-open-side.png" as="image" />
+    <link rel="preload" href="assets/handdrawn/login-menu-panel.png" as="image" />
+    <link rel="preload" href="assets/handdrawn/metal-door-left.png" as="image" />
+    <link rel="preload" href="assets/handdrawn/metal-door-right.png" as="image" />
     <link rel="stylesheet" href="styles.css" />
     <script
       defer
@@ -19,54 +22,117 @@
   <body>
     <main class="app-shell" aria-live="polite">
       <section class="stage stage-cover is-active" data-stage="cover">
-        <div class="cover-wrap">
-          <p class="eyebrow">secure pookie protocol</p>
-          <button class="card-trigger" id="cardTrigger" aria-label="Open the card">
-            <img
-              class="card-art"
-              src="assets/card-front.png"
-              alt="A closed romantic greeting card with code-inspired details"
-            />
-            <span class="card-shine" aria-hidden="true"></span>
+        <div class="envelope-scene" id="envelopeScene">
+          <button
+            class="envelope-face envelope-back"
+            id="flipEnvelope"
+            type="button"
+            aria-label="Flip the envelope over"
+          >
+            <span class="painted-envelope-back" aria-hidden="true">
+              <span class="fold fold-one"></span>
+              <span class="fold fold-two"></span>
+              <span class="gaya-name">Gaya</span>
+              <span class="spark spark-one"></span>
+              <span class="spark spark-two"></span>
+              <span class="spark spark-three"></span>
+              <span class="spark spark-four"></span>
+            </span>
           </button>
-          <p class="cover-note">authorization required</p>
+
+          <div class="envelope-face envelope-front">
+            <img
+              class="envelope-art"
+              src="assets/handdrawn/envelope-open-side.png"
+              alt="A hand-painted pink envelope with a gold heart"
+            />
+            <button
+              class="heart-hotspot"
+              id="heartButton"
+              type="button"
+              aria-label="Press the gold heart"
+            ></button>
+          </div>
         </div>
       </section>
 
       <section class="stage stage-auth" data-stage="auth">
-        <div class="vault">
+        <div class="auth-artboard">
           <img
-            class="vault-card"
-            src="assets/card-front.png"
-            alt="The card waiting behind the security doors"
+            class="auth-envelope"
+            src="assets/handdrawn/envelope-open-side.png"
+            alt="The hand-painted pink envelope beginning to open"
           />
 
           <form class="login-panel" id="loginForm" autocomplete="off">
-            <p class="panel-kicker">classified card access</p>
-            <h1>Enter password</h1>
-            <label class="field">
-              <span>Password</span>
-              <input
-                id="passwordInput"
-                name="password"
-                type="password"
-                inputmode="text"
-                autocomplete="off"
-                placeholder="nice try"
-              />
-            </label>
-            <button class="primary-btn" type="submit">Unlock</button>
-            <p class="status-line" id="loginStatus"></p>
+            <img
+              class="login-menu-art"
+              src="assets/handdrawn/login-menu-panel.png"
+              alt=""
+              aria-hidden="true"
+            />
+            <div class="login-content">
+              <label class="paint-field">
+                <span>username</span>
+                <input
+                  id="usernameInput"
+                  name="username"
+                  type="text"
+                  autocomplete="username"
+                  value="POOKI3"
+                />
+              </label>
+              <label class="paint-field">
+                <span>password</span>
+                <input
+                  id="passwordInput"
+                  name="password"
+                  type="password"
+                  inputmode="numeric"
+                  autocomplete="current-password"
+                  placeholder="enter code"
+                />
+              </label>
+              <button class="paint-button" type="submit">
+                <span>unlock</span>
+              </button>
+              <p class="status-line" id="loginStatus"></p>
+            </div>
           </form>
 
-          <div class="door-system" id="doorSystem" aria-hidden="true">
-            <div class="door door-left">
-              <span></span><span></span><span></span>
-            </div>
-            <div class="door door-right">
-              <span></span><span></span><span></span>
+          <div class="door-system" id="doorSystem">
+            <img
+              class="metal-door metal-door-left"
+              src="assets/handdrawn/metal-door-left.png"
+              alt=""
+            />
+            <img
+              class="metal-door metal-door-right"
+              src="assets/handdrawn/metal-door-right.png"
+              alt=""
+            />
+            <div class="security-tape-system" aria-hidden="true">
+              <div class="tape-track tape-track-one">
+                <span class="tape-line"></span>
+                <img
+                  class="tape-roll"
+                  src="assets/handdrawn/security-tape-roll.png"
+                  alt=""
+                />
+              </div>
+              <div class="tape-track tape-track-two">
+                <span class="tape-line"></span>
+                <img
+                  class="tape-roll"
+                  src="assets/handdrawn/security-tape-roll.png"
+                  alt=""
+                />
+              </div>
             </div>
             <div class="door-lock">ACCESS DENIED</div>
+            <button class="lockdown-retry" id="retryLogin" type="button" hidden>
+              try again
+            </button>
           </div>
         </div>
       </section>

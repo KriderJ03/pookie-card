@@ -12,7 +12,7 @@
 - Live site: https://kriderj03.github.io/pookie-card/
 - Local project folder on the original machine: `C:\Users\Cindy\Documents\Pookie Card`
 - Main branch: `main`
-- Latest setup commit when this handoff was created: `9710812 Document cloud setup`
+- Latest setup commit when this handoff was first created: `9710812 Document cloud setup`
 
 The site is a static GitHub Pages project with no build step. It uses:
 
@@ -21,18 +21,24 @@ The site is a static GitHub Pages project with no build step. It uses:
 - `script.js` for the full interaction flow and easy configuration.
 - `assets/card-front.png` for the generated card-front artwork.
 - `.github/workflows/pages.yml` for GitHub Pages deployment.
+- `assets/handdrawn/` for the user's cleaned hand-drawn PNG assets.
 
 ## Implemented Flow
 
-1. The first screen shows a generated CS-romantic card image.
-2. Clicking the card opens a fake password prompt.
-3. Any password attempt is rejected.
-4. Two metal doors close and show `ACCESS DENIED`.
-5. The user answers three CS-themed questions.
-6. The user completes a 9-tile playful captcha by selecting the heart tiles.
-7. The 2FA step starts.
-8. In demo mode, the code is shown on-screen.
-9. After entering the code, the card opens and background music starts.
+1. The first screen shows a CSS-painted envelope back.
+2. Cursive text writes out `Gaya`, with little stars sparkling around it.
+3. Clicking the envelope flips it to the user's hand-drawn pink envelope with the gold heart.
+4. Clicking the gold heart starts the opening motion and brings up the login menu.
+5. The login menu uses the user's hand-drawn menu and button assets.
+6. The username autofills as `POOKI3`.
+7. The password is `030883`.
+8. A wrong password closes the hand-drawn metal doors and rolls cyber security tape into an X over the screen.
+9. Retrying and entering the correct password advances into the older placeholder quiz/captcha/2FA flow.
+10. The user answers three CS-themed questions.
+11. The user completes a 9-tile playful captcha by selecting the heart tiles.
+12. The 2FA step starts.
+13. In demo mode, the code is shown on-screen.
+14. After entering the code, the card opens and background music starts.
 
 Important: this is romantic security theater, not real authentication. The fake password is not collected or sent anywhere.
 
@@ -62,16 +68,20 @@ The EmailJS template should support these variables:
 
 Do not commit private secrets to the repo. EmailJS public keys are browser-facing, but avoid putting anything sensitive in the card answers or page source.
 
-## Hand-Drawn Asset Plan
+## Hand-Drawn Asset Notes
 
-The user plans to provide hand-drawn assets soon. Likely integration points:
+The current hand-drawn assets came from five green-background photos. They were chroma-keyed and saved as:
 
-- Replace `assets/card-front.png` with a hand-drawn closed-card image.
-- Add hand-drawn captcha tiles or decorations.
-- Add hand-drawn open-card page art.
-- Potentially replace the generated card look with a more personal scanned/drawn style.
+- `assets/handdrawn/envelope-open-side.png`
+- `assets/handdrawn/metal-door-left.png`
+- `assets/handdrawn/metal-door-right.png`
+- `assets/handdrawn/login-menu-panel.png`
+- `assets/handdrawn/login-button.png`
+- `assets/handdrawn/security-tape-roll.png`
+- `assets/handdrawn/security-tape-strip.png`
+- `assets/handdrawn/captcha-paper-source.png`
 
-Keep the existing flow and timing unless the new assets call for a redesign.
+The CSS-created envelope back is temporary until the user supplies a hand-drawn back side. The later quiz/captcha/2FA/card-open sections still need the same hand-drawn treatment.
 
 ## How To Continue On Another Computer
 
@@ -105,4 +115,3 @@ https://kriderj03.github.io/pookie-card/. I want to keep the existing staged
 card flow, but I will be adding hand-drawn assets and want you to integrate
 them cleanly into the site.
 ```
-

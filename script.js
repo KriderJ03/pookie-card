@@ -1,6 +1,10 @@
 const CONFIG = {
   girlfriendName: "Pookie",
   fromName: "your biggest fan",
+  login: {
+    username: "POOKI3",
+    password: "030883",
+  },
   quiz: [
     {
       prompt: "What does CSS stand for?",
@@ -39,11 +43,16 @@ const CONFIG = {
 };
 
 const stages = [...document.querySelectorAll(".stage")];
-const cardTrigger = document.querySelector("#cardTrigger");
+const envelopeScene = document.querySelector("#envelopeScene");
+const flipEnvelope = document.querySelector("#flipEnvelope");
+const heartButton = document.querySelector("#heartButton");
 const loginForm = document.querySelector("#loginForm");
 const loginPanel = document.querySelector(".login-panel");
 const loginStatus = document.querySelector("#loginStatus");
+const usernameInput = document.querySelector("#usernameInput");
+const passwordInput = document.querySelector("#passwordInput");
 const doorSystem = document.querySelector("#doorSystem");
+const retryLogin = document.querySelector("#retryLogin");
 
 const questionText = document.querySelector("#questionText");
 const questionCount = document.querySelector("#questionCount");
@@ -70,6 +79,11 @@ let twoFactorCode = "";
 let audio = null;
 
 signatureLine.textContent = `- ${CONFIG.fromName}`;
+usernameInput.value = CONFIG.login.username;
+
+window.setTimeout(() => {
+  document.body.classList.add("name-written");
+}, 2150);
 
 function setStage(name) {
   stages.forEach((stage) => {
@@ -91,23 +105,65 @@ function normalize(value) {
     .replace(/\s+/g, " ");
 }
 
-cardTrigger.addEventListener("click", () => {
-  setStage("auth");
-  window.setTimeout(() => document.querySelector("#passwordInput").focus(), 380);
+flipEnvelope.addEventListener("click", () => {
+  envelopeScene.classList.add("is-flipped");
+  window.setTimeout(() => heartButton.focus(), 780);
+});
+
+heartButton.addEventListener("click", () => {
+  envelopeScene.classList.add("is-opening");
+  window.setTimeout(() => {
+    setStage("auth");
+    usernameInput.value = CONFIG.login.username;
+    passwordInput.value = "";
+    setStatus(loginStatus, "");
+    window.setTimeout(() => passwordInput.focus(), 160);
+  }, 540);
 });
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  loginPanel.classList.remove("is-rejected");
-  void loginPanel.offsetWidth;
-  loginPanel.classList.add("is-rejected");
-  setStatus(loginStatus, "Password rejected. Deploying backup protocol.", "error");
-  doorSystem.classList.add("is-closed");
+  const usernameMatches =
+    usernameInput.value.trim().toUpperCase() === CONFIG.login.username;
+  const passwordMatches = passwordInput.value === CONFIG.login.password;
 
+  if (usernameMatches && passwordMatches) {
+    setStatus(loginStatus, "credentials accepted", "success");
+    window.setTimeout(() => {
+      questionIndex = 0;
+      setStage("quiz");
+      renderQuestion();
+    }, 720);
+    return;
+  }
+
+  triggerLockdown();
+});
+
+function triggerLockdown() {
+  loginPanel.classList.remove("is-rejected");
+  doorSystem.classList.remove("is-closed", "is-taped");
+  void loginPanel.offsetWidth;
+  void doorSystem.offsetWidth;
+  loginPanel.classList.add("is-rejected");
+  setStatus(loginStatus, "incorrect password", "error");
+  retryLogin.hidden = false;
+  doorSystem.classList.add("is-closed");
   window.setTimeout(() => {
-    setStage("quiz");
-    renderQuestion();
-  }, 1350);
+    if (doorSystem.classList.contains("is-closed")) {
+      doorSystem.classList.add("is-taped");
+    }
+  }, 2850);
+}
+
+retryLogin.addEventListener("click", () => {
+  doorSystem.classList.remove("is-closed", "is-taped");
+  loginPanel.classList.remove("is-rejected");
+  setStatus(loginStatus, "");
+  usernameInput.value = CONFIG.login.username;
+  passwordInput.value = "";
+  retryLogin.hidden = true;
+  window.setTimeout(() => passwordInput.focus(), 260);
 });
 
 function renderQuestion() {
