@@ -8,16 +8,44 @@
       content="A hand-drawn romantic security-gauntlet card for a computer science girlfriend."
     />
     <title>Pookie Card</title>
-    <link rel="preload" href="assets/handdrawn/envelope-open-side.png" as="image" />
-    <link rel="preload" href="assets/handdrawn/login-menu-panel.png" as="image" />
-    <link rel="preload" href="assets/handdrawn/metal-door-left.png" as="image" />
-    <link rel="preload" href="assets/handdrawn/metal-door-right.png" as="image" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" href="assets/handdrawn/envelope-back.png" as="image" />
+    <link rel="preload" href="assets/handdrawn/envelope-front-closed.png" as="image" />
+    <link
+      rel="preload"
+      href="assets/handdrawn/envelope-front-slight-open.png"
+      as="image"
+    />
+    <link rel="preload" href="assets/handdrawn/login-menu-panel-v2.png" as="image" />
+    <link
+      rel="preload"
+      href="assets/handdrawn/metal-door-closed-no-heart.png?v=door-7"
+      as="image"
+    />
+    <link
+      rel="preload"
+      href="assets/handdrawn/metal-door-heart-lock.png?v=door-7"
+      as="image"
+    />
+    <link rel="preload" href="assets/handdrawn/security-tape-roll-v2.png" as="image" />
+    <link rel="preload" href="assets/handdrawn/security-tape-strip-v2.png" as="image" />
+    <link rel="preload" href="assets/handdrawn/captcha-cutie-grid-only.png" as="image" />
+    <link rel="preload" href="assets/handdrawn/final-card-open-01.png?v=final-2" as="image" />
+    <link rel="preload" href="assets/handdrawn/final-card-open-13.png?v=final-2" as="image" />
+    <link rel="preload" href="assets/final-slideshow/slide-001.jpg?v=slideshow-1" as="image" />
+    <link rel="preload" href="assets/final-slideshow/slide-044.jpg?v=slideshow-1" as="image" />
+    <link rel="preload" href="assets/audio/how-much-longer.mp3?v=audio-1" as="audio" type="audio/mpeg" />
+    <link rel="preload" href="assets/audio/windows-default.wav?v=audio-1" as="audio" type="audio/wav" />
+    <link rel="preload" href="assets/audio/sliding-metal-door-sfx.mp3?v=audio-2" as="audio" type="audio/mpeg" />
+    <link rel="preload" href="assets/audio/incorrect-boop-bass.wav?v=audio-4" as="audio" type="audio/wav" />
+    <link rel="preload" href="assets/audio/mouse-click.wav?v=audio-4" as="audio" type="audio/wav" />
+    <link rel="preload" href="assets/audio/packing-tape-roll-a.mp3?v=audio-3" as="audio" type="audio/mpeg" />
+    <link rel="preload" href="assets/audio/packing-tape-roll-b.mp3?v=audio-3" as="audio" type="audio/mpeg" />
+    <link rel="stylesheet" href="styles.css?v=audio-track-5" />
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
     ></script>
-    <script defer src="script.js"></script>
+    <script defer src="script.js?v=audio-track-5"></script>
   </head>
   <body>
     <main class="app-shell" aria-live="polite">
@@ -29,22 +57,24 @@
             type="button"
             aria-label="Flip the envelope over"
           >
-            <span class="painted-envelope-back" aria-hidden="true">
-              <span class="fold fold-one"></span>
-              <span class="fold fold-two"></span>
-              <span class="gaya-name">Gaya</span>
-              <span class="spark spark-one"></span>
-              <span class="spark spark-two"></span>
-              <span class="spark spark-three"></span>
-              <span class="spark spark-four"></span>
-            </span>
+            <img
+              class="envelope-art"
+              src="assets/handdrawn/envelope-back.png"
+              alt="A hand-painted pink envelope addressed to Gaya"
+            />
           </button>
 
           <div class="envelope-face envelope-front">
             <img
-              class="envelope-art"
-              src="assets/handdrawn/envelope-open-side.png"
+              class="envelope-art envelope-front-closed-art"
+              src="assets/handdrawn/envelope-front-closed.png"
               alt="A hand-painted pink envelope with a gold heart"
+            />
+            <img
+              class="envelope-art envelope-front-open-art"
+              src="assets/handdrawn/envelope-front-slight-open.png"
+              alt=""
+              aria-hidden="true"
             />
             <button
               class="heart-hotspot"
@@ -54,91 +84,99 @@
             ></button>
           </div>
         </div>
-      </section>
 
-      <section class="stage stage-auth" data-stage="auth">
-        <div class="auth-artboard">
+        <div class="auth-overlay" aria-hidden="true"></div>
+
+        <form class="login-panel" id="loginForm" autocomplete="off">
           <img
-            class="auth-envelope"
-            src="assets/handdrawn/envelope-open-side.png"
-            alt="The hand-painted pink envelope beginning to open"
+            class="login-menu-art"
+            src="assets/handdrawn/login-menu-panel-v2.png"
+            alt=""
+            aria-hidden="true"
           />
-
-          <form class="login-panel" id="loginForm" autocomplete="off">
-            <img
-              class="login-menu-art"
-              src="assets/handdrawn/login-menu-panel.png"
-              alt=""
-              aria-hidden="true"
-            />
-            <div class="login-content">
-              <label class="paint-field">
-                <span>username</span>
-                <input
-                  id="usernameInput"
-                  name="username"
-                  type="text"
-                  autocomplete="username"
-                  value="POOKI3"
-                />
-              </label>
-              <label class="paint-field">
-                <span>password</span>
-                <input
-                  id="passwordInput"
-                  name="password"
-                  type="password"
-                  inputmode="numeric"
-                  autocomplete="current-password"
-                  placeholder="enter code"
-                />
-              </label>
-              <button class="paint-button" type="submit">
-                <span>unlock</span>
-              </button>
-              <p class="status-line" id="loginStatus"></p>
-            </div>
-          </form>
-
-          <div class="door-system" id="doorSystem">
-            <img
-              class="metal-door metal-door-left"
-              src="assets/handdrawn/metal-door-left.png"
-              alt=""
-            />
-            <img
-              class="metal-door metal-door-right"
-              src="assets/handdrawn/metal-door-right.png"
-              alt=""
-            />
-            <img
-              class="metal-door-lock-art"
-              src="assets/handdrawn/metal-door-center-lock.png"
-              alt=""
-            />
-            <div class="security-tape-system" aria-hidden="true">
-              <div class="tape-track tape-track-one">
-                <span class="tape-line"></span>
-                <img
-                  class="tape-roll"
-                  src="assets/handdrawn/security-tape-roll.png"
-                  alt=""
-                />
-              </div>
-              <div class="tape-track tape-track-two">
-                <span class="tape-line"></span>
-                <img
-                  class="tape-roll"
-                  src="assets/handdrawn/security-tape-roll.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="door-lock">ACCESS DENIED</div>
-            <button class="lockdown-retry" id="retryLogin" type="button" hidden>
-              try again
+          <div class="login-content">
+            <h2 class="login-title">Log-in</h2>
+            <label class="paint-field">
+              <span>username</span>
+              <input
+                id="usernameInput"
+                name="username"
+                type="text"
+                autocomplete="username"
+                value="POOKI3"
+              />
+            </label>
+            <label class="paint-field">
+              <span>password</span>
+              <input
+                id="passwordInput"
+                name="password"
+                type="password"
+                inputmode="text"
+                autocomplete="current-password"
+                placeholder="enter code"
+              />
+            </label>
+            <button class="paint-button" type="submit">
+              <span>unlock</span>
             </button>
+            <p class="status-line" id="loginStatus"></p>
           </div>
+        </form>
+
+        <div class="door-system" id="doorSystem">
+          <div class="metal-door metal-door-left" aria-hidden="true">
+            <img
+              class="metal-door-art"
+              src="assets/handdrawn/metal-door-closed-no-heart.png?v=door-7"
+              alt=""
+            />
+          </div>
+          <div class="metal-door metal-door-right" aria-hidden="true">
+            <img
+              class="metal-door-art"
+              src="assets/handdrawn/metal-door-closed-no-heart.png?v=door-7"
+              alt=""
+            />
+          </div>
+          <div class="metal-door-lock-carrier" aria-hidden="true">
+            <img
+              class="metal-door-lock-piece"
+              src="assets/handdrawn/metal-door-heart-lock.png?v=door-7"
+              alt=""
+            />
+          </div>
+          <div class="security-tape-system" aria-hidden="true">
+            <div class="tape-track tape-track-one">
+              <span class="tape-line"></span>
+              <img
+                class="tape-roll"
+                src="assets/handdrawn/security-tape-roll-v2.png"
+                alt=""
+              />
+            </div>
+            <div class="tape-track tape-track-two">
+              <span class="tape-line"></span>
+              <img
+                class="tape-roll"
+                src="assets/handdrawn/security-tape-roll-v2.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="extra-tape-layer" id="extraTapeLayer" aria-hidden="true"></div>
+          <div class="door-lock">ACCESS DENIED</div>
+          <button class="lockdown-retry" id="retryLogin" type="button" hidden>
+            Recover password
+          </button>
+          <section
+            class="recovery-panel"
+            id="recoveryPanel"
+            aria-live="polite"
+            hidden
+          >
+            <div class="recovery-card" id="recoveryContent"></div>
+          </section>
         </div>
       </section>
 
@@ -174,8 +212,8 @@
 
       <section class="stage stage-two-factor" data-stage="two-factor">
         <div class="checkpoint two-factor-panel">
-          <p class="panel-kicker">two factor authentication</p>
-          <h2>Check the inbox.</h2>
+          <p class="panel-kicker">Password recovery</p>
+          <h2>A recovery code was sent to your inbox</h2>
           <p class="soft-copy" id="twoFactorMessage"></p>
           <form id="twoFactorForm" class="answer-row code-row" autocomplete="off">
             <input
@@ -194,29 +232,18 @@
       </section>
 
       <section class="stage stage-final" data-stage="final">
-        <button class="sound-toggle" id="soundToggle" type="button">Mute music</button>
-        <article class="open-card" aria-label="Opened card">
-          <div class="card-page card-page-left">
-            <p class="tiny-label">approved</p>
-            <h2>Dear Pookie,</h2>
-            <p>
-              You made it through the most dramatic security system ever built
-              for one very important message.
-            </p>
-          </div>
-          <div class="card-page card-page-right">
-            <h1>For my favorite CS girl</h1>
-            <p>
-              You are my favorite notification, my cleanest merge, and the
-              softest place in my whole runtime.
-            </p>
-            <p>
-              I hope this little site makes you smile as much as you make me
-              smile.
-            </p>
-            <p class="signature" id="signatureLine">- your biggest fan</p>
-          </div>
-        </article>
+        <div class="final-slideshow" id="finalSlideshow" aria-hidden="true">
+          <div class="final-slideshow-track" id="finalSlideshowTrack"></div>
+        </div>
+        <div class="final-card-stage" aria-label="A hand-painted card opens to reveal a note">
+          <img
+            class="final-card-frame"
+            id="finalCardFrame"
+            src="assets/handdrawn/final-card-open-01.png?v=final-2"
+            alt="A hand-painted pink envelope opening to reveal a love note"
+            draggable="false"
+          />
+        </div>
       </section>
     </main>
   </body>
