@@ -109,7 +109,7 @@ const finalSlideshowTrack = document.querySelector("#finalSlideshowTrack");
 const FINAL_CARD_FRAMES = Array.from(
   { length: 13 },
   (_, index) =>
-    `assets/handdrawn/final-card-open-${String(index + 1).padStart(2, "0")}.png?v=final-2`,
+    `assets/handdrawn/final-card-open-${String(index + 1).padStart(2, "0")}.png?v=final-3`,
 );
 const FINAL_FRAME_INTERVAL_MS = 190;
 const FINAL_SLIDESHOW_PHOTO_COUNT = 88;
